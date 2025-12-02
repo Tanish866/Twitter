@@ -1,23 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-
+import TweetList from './components/TweetList';
+const initialDummyTweets = [
+  {id: 0, content: 'We have a new tweeter called as Thread.', likeCount: 10},
+  {id: 1, content: 'What should we post ??', likeCount: 20},
+  {id: 2, content: 'What is up with tech community', likeCount: 30}
+];
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <TweetList tweets={initialDummyTweets}/>
     </div>
   );
 }
