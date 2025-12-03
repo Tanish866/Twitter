@@ -6,8 +6,6 @@ const initialDummyTweets = [
   {id: 1, content: 'What should we post ??', likeCount: 20, createAt: new Date()},
   {id: 2, content: 'What is up with tech community', likeCount: 30, createAt: new Date()}
 ];
-
-
 function Twitter() {
     const[tweets, setTweets] = useState(initialDummyTweets);
     const handleAddTweets = (text) => {
@@ -31,9 +29,16 @@ function Twitter() {
             })
         );
     }
+    const sortTweets = () => {
+        tweets.sort((t1, t2) => new Date(t2.createAt) - new Date(t1.createAt));
+        setTweets([...tweets]);
+    }
     return (
         <>
             <AddTweet onAddTweets={handleAddTweets}/>
+            <button onClick={sortTweets}>
+                Sort tweet by createdAt!
+            </button>
             <TweetList tweets={tweets} onEditTweet={handleEditTweet}/>
         </>
     );
