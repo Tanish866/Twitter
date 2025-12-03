@@ -19,12 +19,22 @@ function Twitter() {
             createAt: new Date()
         }]);
     }
+    const handleEditTweet = (tweet) => {
+        setTweets(
+            tweets.map((currentTweet) =>{
+                if(currentTweet.id == tweet.id){
+                    return tweet;
+                }
+                else{
+                    return currentTweet;
+                }
+            })
+        );
+    }
     return (
-        
         <>
             <AddTweet onAddTweets={handleAddTweets}/>
-            <TweetList tweets={tweets}/>
-            
+            <TweetList tweets={tweets} onEditTweet={handleEditTweet}/>
         </>
     );
 }
