@@ -2,9 +2,9 @@ import TweetList from './TweetList';
 import AddTweet from './AddTweet';
 import { useState } from 'react';
 const initialDummyTweets = [
-  {id: 0, content: 'We have a new tweeter called as Thread.', likeCount: 10},
-  {id: 1, content: 'What should we post ??', likeCount: 20},
-  {id: 2, content: 'What is up with tech community', likeCount: 30}
+  {id: 0, content: 'We have a new tweeter called as Thread.', likeCount: 10, createAt: new Date()},
+  {id: 1, content: 'What should we post ??', likeCount: 20, createAt: new Date()},
+  {id: 2, content: 'What is up with tech community', likeCount: 30, createAt: new Date()}
 ];
 
 
@@ -15,7 +15,8 @@ function Twitter() {
         setTweets([...tweets, {
             content: text,
             likeCount: Math.floor(Math.random() * 10),
-            id: nextId
+            id: nextId,
+            createAt: new Date()
         }]);
     }
     return (

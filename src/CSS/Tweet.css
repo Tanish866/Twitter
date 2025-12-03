@@ -4,7 +4,11 @@
     font-size: larger;
     width: 600px;
 }
-.likes{
+.like-create-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.likes, .created-at{
     font-size: xx-small;
 }
 .tweet-content{
