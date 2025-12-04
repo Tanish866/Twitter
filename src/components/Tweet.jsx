@@ -9,8 +9,7 @@ function Tweet({ tweetId, content, likeCount, createdAt, onEdit }){
                     {(isEditted) ?( 
                         <input 
                             type='text' 
-                            value={content} 
-                            onChange={(e) => {
+                            value={content}                             onChange={(e) => {
                                 onEdit({
                                     id: tweetId,
                                     content: e.target.value,

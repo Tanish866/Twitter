@@ -1,14 +1,18 @@
 import TweetList from './TweetList';
 import AddTweet from './AddTweet';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { memo } from 'react';
 const initialDummyTweets = [
   {id: 0, content: 'We have a new tweeter called as Thread.', likeCount: 10, createAt: new Date()},
   {id: 1, content: 'What should we post ??', likeCount: 20, createAt: new Date()},
   {id: 2, content: 'What is up with tech community', likeCount: 30, createAt: new Date()}
 ];
+
+const MemoisedAddTweet = memo(AddTweet)
+
 function Twitter() {
     const[tweets, setTweets] = useState(initialDummyTweets);
-    const handleAddTweets = (text) => {
+    const handleAddTweets = useCallback((text) => {
         let nextId = (tweets.length) > 0 ? tweets[tweets.length - 1].id + 1 : 0;
         setTweets([...tweets, {
             content: text,
@@ -16,8 +20,8 @@ function Twitter() {
             id: nextId,
             createAt: new Date()
         }]);
-    }
-    const handleEditTweet = (tweet) => {
+    }, [tweets]);
+    const handleEditTweet = useCallback((tweet) => {
         setTweets(
             tweets.map((currentTweet) =>{
                 if(currentTweet.id == tweet.id){
@@ -28,14 +32,14 @@ function Twitter() {
                 }
             })
         );
-    }
+    }, [tweets]);
     const sortTweets = () => {
         tweets.sort((t1, t2) => new Date(t2.createAt) - new Date(t1.createAt));
         setTweets([...tweets]);
     }
     return (
         <>
-            <AddTweet onAddTweets={handleAddTweets}/>
+            <MemoisedAddTweet onAddTweets={handleAddTweets}/>
             <button onClick={sortTweets}>
                 Sort tweet by createdAt!
             </button>
